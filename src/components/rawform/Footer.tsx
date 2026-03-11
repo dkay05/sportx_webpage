@@ -1,139 +1,144 @@
 'use client';
 
-import { Instagram, Twitter, Youtube } from 'lucide-react';
+import { useState } from 'react';
 
 const footerLinks = {
-  shop: [
-    { name: 'New Arrivals', href: '#' },
-    { name: 'Footwear', href: '#' },
-    { name: 'Apparel', href: '#' },
-    { name: 'Accessories', href: '#' },
+  features: [
+    { name: 'Markets', href: '#' },
+    { name: 'Trading', href: '#' },
+    { name: 'Analytics', href: '#' },
   ],
-  company: [
-    { name: 'About Us', href: '#' },
-    { name: 'Careers', href: '#' },
-    { name: 'Press', href: '#' },
+  support: [
+    { name: 'Help', href: '#' },
+    { name: 'FAQ', href: '#' },
     { name: 'Contact', href: '#' },
+  ],
+  legal: [
+    { name: 'Privacy Policy', href: '#' },
+    { name: 'Terms of Services', href: '#' },
+    { name: 'Cookies', href: '#' },
   ],
 };
 
-const socialLinks = [
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
-];
-
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
 
   return (
-    <footer className="bg-primary text-primary-foreground py-24 px-6 md:px-12 relative overflow-hidden">
-      {/* Background Year */}
-      <div className="absolute bottom-0 right-0 pointer-events-none select-none">
-        <span 
-          className="font-clash font-bold text-white/10 leading-none"
-          style={{ fontSize: '10vw' }}
-        >
-          {currentYear}
-        </span>
-      </div>
-
-      <div className="max-w-[1800px] mx-auto relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-24">
-          {/* Brand Column */}
-          <div className="md:col-span-1">
-            <a 
-              href="/" 
-              className="font-clash text-4xl font-bold uppercase tracking-tighter-brutal block mb-8"
-            >
-              SPORTX
-            </a>
-            <div className="flex items-center gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-10 h-10 rounded-full border border-primary-foreground/30 flex items-center justify-center hover:border-accent hover:bg-accent transition-all duration-300"
-                  aria-label={social.name}
-                >
-                  <social.icon size={18} />
-                </a>
-              ))}
+    <footer className="bg-surface py-16 px-6 md:px-12">
+      <div className="max-w-[1400px] mx-auto">
+        {/* Newsletter Section */}
+        <div className="bg-primary rounded-3xl p-8 md:p-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+            {/* Left - Newsletter Text */}
+            <div>
+              <h2 className="font-clash text-3xl md:text-4xl font-bold text-white mb-4">
+                Subscribe our<br />newsletter
+              </h2>
+              <p className="font-satoshi text-sm text-white/60 max-w-sm">
+                Subscribe to our newsletter and be the first to receive insights, updates, and expert tips on sports trading.
+              </p>
             </div>
-          </div>
 
-          {/* Shop Links */}
-          <div className="md:col-span-1">
-            <h4 className="font-satoshi text-sm font-bold uppercase tracking-wider-brutal mb-6 text-primary-foreground/50">
-              Shop
-            </h4>
-            <ul className="space-y-4">
-              {footerLinks.shop.map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="font-satoshi text-sm hover:text-accent transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company Links */}
-          <div className="md:col-span-1">
-            <h4 className="font-satoshi text-sm font-bold uppercase tracking-wider-brutal mb-6 text-primary-foreground/50">
-              Company
-            </h4>
-            <ul className="space-y-4">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="font-satoshi text-sm hover:text-accent transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div className="md:col-span-1">
-            <h4 className="font-satoshi text-sm font-bold uppercase tracking-wider-brutal mb-6 text-primary-foreground/50">
-              Stay Updated
-            </h4>
-            <p className="font-satoshi text-sm text-primary-foreground/70 mb-4">
-              Subscribe for exclusive drops and updates.
-            </p>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Email"
-                className="flex-1 bg-transparent border-b border-primary-foreground/30 py-2 font-satoshi text-sm focus:outline-none focus:border-accent transition-colors duration-300"
-              />
-              <button className="ml-4 font-satoshi text-sm font-medium uppercase tracking-wide-brutal text-accent hover:text-white transition-colors duration-300">
-                Join
-              </button>
+            {/* Right - Email Input */}
+            <div className="flex flex-col justify-center">
+              <p className="font-satoshi text-sm text-white/60 mb-3">Stay up to date</p>
+              <div className="flex gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="flex-1 bg-white/10 border border-white/20 rounded-full px-5 py-3 font-satoshi text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#A78BFA] transition-colors duration-300"
+                />
+                <button className="bg-[#A78BFA] hover:bg-[#8B5CF6] text-white font-satoshi text-sm font-medium px-6 py-3 rounded-full transition-colors duration-300">
+                  Subscribe
+                </button>
+              </div>
+              <p className="font-satoshi text-xs text-white/40 mt-3">
+                By subscribing you agree to our <a href="#" className="underline hover:text-white/60">Privacy Policy</a>
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center pt-8 border-t border-primary-foreground/10">
-          <p className="font-satoshi text-xs text-primary-foreground/50">
-            © {currentYear} SportX. All rights reserved.
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="font-satoshi text-xs text-primary-foreground/50 hover:text-primary-foreground transition-colors duration-300">
-              Privacy Policy
+        {/* Footer Links Section */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-12">
+          {/* Brand Column */}
+          <div className="col-span-2 md:col-span-2">
+            <a 
+              href="/" 
+              className="font-clash text-3xl font-bold uppercase tracking-tighter text-primary block mb-4"
+            >
+              SPORTX
             </a>
-            <a href="#" className="font-satoshi text-xs text-primary-foreground/50 hover:text-primary-foreground transition-colors duration-300">
-              Terms of Service
-            </a>
+            <p className="font-satoshi text-sm text-primary/60 max-w-xs">
+              Make your sports trading<br />simple and profitable
+            </p>
           </div>
+
+          {/* Features Links */}
+          <div>
+            <h4 className="font-satoshi text-sm font-semibold text-primary mb-4">
+              Features
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.features.map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.href}
+                    className="font-satoshi text-sm text-primary/60 hover:text-primary transition-colors duration-300"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support Links */}
+          <div>
+            <h4 className="font-satoshi text-sm font-semibold text-primary mb-4">
+              Support
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.support.map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.href}
+                    className="font-satoshi text-sm text-primary/60 hover:text-primary transition-colors duration-300"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h4 className="font-satoshi text-sm font-semibold text-primary mb-4">
+              Legal
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.href}
+                    className="font-satoshi text-sm text-primary/60 hover:text-primary transition-colors duration-300"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-primary/10">
+          <p className="font-satoshi text-xs text-primary/40 text-center">
+            © {new Date().getFullYear()} SportX. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
